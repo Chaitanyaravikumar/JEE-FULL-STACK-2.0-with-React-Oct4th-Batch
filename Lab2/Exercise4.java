@@ -14,7 +14,7 @@ public class Exercise4 {
 			{
 				arr[i]=sc.nextInt();
 			}
-			int a =modifyArray(arr);
+			modifyArray(arr);
 			System.out.println("Resultant array: ");
 			for(int i=arr.length-1;i>=0;i--) 
 			{
