@@ -1,62 +1,49 @@
 package Lab2;
 import java.util.Arrays;
 import java.util.Scanner;
-
-public class Exercise2 {
-
-	public static void main(String[] args) 
-	{
-		try(Scanner sc = new Scanner(System.in)) {
-			System.out.println("Enter the size of the array: ");
-			int size=Integer.parseInt(sc.nextLine());
-			
-			String [] names=new String[size];
-			System.out.println("Enter the names") ;
-			
-			for(int i=0;i<size;i++)
-			{
-				names[i]=sc.nextLine();
-			}
-			
-			String s = sortString(names);
-		} 
-		catch (NumberFormatException e) 
+public class Exercise4 {
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in))
 		{
-			e.printStackTrace();
+			System.out.println("Enter the size of array");
+			int size=sc.nextInt();
+			
+			int [] arr=new int[size];
+			System.out.println("Enter array elemts: ");
+			for(int i=0;i<size;i++) 
+			{
+				arr[i]=sc.nextInt();
+			}
+			int a =modifyArray(arr);
+			System.out.println("Resultant array: ");
+			for(int i=arr.length-1;i>=0;i--) 
+			{
+				System.out.print(arr[i]+ "\t");
+			}
 		}
 		
 	}
 
-	private static String sortString(String[] names) 
+	private static int modifyArray(int[] arr)
 	{
-		Arrays.sort(names);
-		int len=names.length;
-		int mid=len/2;
-		System.out.println("Resultant array is: ");
-		
-		if(len%2==0)
+		Arrays.sort(arr);
+		int n=arr.length;
+		int temp[]=new int[n];
+		int j=0;
+		for(int i=0;i<(n-1);i++)
 		{
-			for(int i=0;i<mid;i++)
+			if(arr[i]!=arr[i+1])
 			{
-				System.out.println(names[i].toUpperCase());
-			}
-			for(int j=mid;j<len;j++)   //int j=len-1;j>=len/2;j--
-			{
-				System.out.println(names[j].toLowerCase());
+				temp[j++]=arr[i];
 			}
 		}
-		else
-		{
-			for(int i=0;i<(mid)+1;i++) 
-			{
-				System.out.println(names[i].toUpperCase());
-			}
-			for(int j=(mid+1);j<len;j++)   //int j=len-1;j>=len/2;j--
-			{
-				System.out.println(names[j].toLowerCase());
-			}
-		}
+		temp[j++]=arr[n-1];
 		
-		return null;
-	}
+		for(int i=0;i<j;i++)
+		{
+			arr[i]=temp[i];
+		}
+		return j;
+	}	
+
 }
